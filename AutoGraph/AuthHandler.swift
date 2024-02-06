@@ -9,7 +9,7 @@ internal protocol AuthHandlerDelegate: AnyObject {
 }
 
 public protocol ReauthenticationDelegate: AnyObject {
-    func autoGraphRequiresReauthentication(accessToken: String?, refreshToken: String?, completion: ReauthenticationRefreshCompletion)
+    func autoGraphRequiresReauthentication(accessToken: String?, refreshToken: String?, completion: @escaping ReauthenticationRefreshCompletion)
 }
 
 public let Unauthorized401StatusCode = 401
