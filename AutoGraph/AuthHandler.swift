@@ -50,6 +50,7 @@ extension AuthHandler: RequestAdapter {
         if let accessToken = self.accessToken {
             urlRequest.headers.add(.authorization(bearerToken: accessToken))
         }
+    urlRequest.headers.add(name: "X-Request-ID", value: UUID().uuidString)
         
         self.lock.unlock()
         completion(.success(urlRequest))
