@@ -5,7 +5,7 @@ public struct SubscriptionResponseHandler {
     
     private let completion: WebSocketCompletionBlock
     
-    init(completion: @escaping WebSocketCompletionBlock) {
+    public init(completion: @escaping WebSocketCompletionBlock) {
         self.completion = completion
     }
     
