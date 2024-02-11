@@ -9,7 +9,7 @@ public struct SubscriptionRequest<R: Request>: SubscriptionRequestSerializable {
     let request: R
     let subscriptionID: SubscriptionID
     
-    init(request: R) throws {
+    public init(request: R) throws {
         self.operationName = request.operationName
         self.request = request
         self.subscriptionID = try SubscriptionRequest.generateSubscriptionID(request: request,
