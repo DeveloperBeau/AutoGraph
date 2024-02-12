@@ -16,10 +16,10 @@ public struct SubscriptionRequest<R: Request>: SubscriptionRequestSerializable {
     
     public func serializedSubscriptionPayload() throws -> String {
         let subscription = try self.request.queryDocument.graphQLString()
-
+      var variables: [String : Any] = [:]
       var query: [String : Any] = [
         "query": subscription,
-        "variables": {}
+        "variables": variables
       ]
       var authorization: [String : Any] = [
         "Authorization": request.authorization,
