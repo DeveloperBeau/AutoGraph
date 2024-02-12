@@ -29,10 +29,10 @@ public struct SubscriptionRequest<R: Request>: SubscriptionRequestSerializable {
       var extensions: [String : Any] = [
         "authorization": authorization,
       ]
-        
+      let value = try JSONSerialization.data(withJSONObject: query, options: .fragmentsAllowed)
         var body: [String : Any] = [
             "extensions": extensions,
-            "data": query
+            "data": value
         ]
         
         if let variables = try self.request.variables?.graphQLVariablesDictionary() {
