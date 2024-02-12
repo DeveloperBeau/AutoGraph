@@ -20,6 +20,10 @@ public protocol Request {
     
     /// The key path to the result object in the data
     var rootKeyPath: String { get }
+  
+  var authorization: String { get }
+  
+  var host: String { get }
     
     /// Called at the moment before the request will be sent from the `Client`.
     func willSend() throws
@@ -64,6 +68,10 @@ public struct DataIncludingNetworkResponse<T: Decodable>: Decodable {
 }
 
 public struct RequestIncludingNetworkResponse<R: Request>: Request {
+  public var authorization: String = ""
+  
+  public var host: String = ""
+  
     public typealias SerializedObject = DataIncludingNetworkResponse<R.SerializedObject>
     public typealias QueryDocument = R.QueryDocument
     public typealias Variables = R.Variables

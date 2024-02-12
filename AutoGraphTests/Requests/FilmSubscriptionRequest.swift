@@ -3,6 +3,10 @@ import Foundation
 import JSONValueRX
 
 class FilmSubscriptionRequest: Request {
+  var authorization: String = ""
+  
+  var host: String = ""
+  
     /*
      query film {
      film(id: "ZmlsbXM6MQ==") {
@@ -58,6 +62,10 @@ class FilmSubscriptionRequest: Request {
 }
 
 class FilmSubscriptionRequestWithVariables: Request {
+  var authorization: String = ""
+  
+  var host: String = ""
+  
     /*
      query film {
      film(id: "ZmlsbXM6MQ==") {
@@ -110,6 +118,10 @@ class FilmSubscriptionRequestWithVariables: Request {
 }
 
 class AllFilmsSubscriptionRequest: Request {
+  var authorization: String = ""
+  
+  var host: String = ""
+  
     /*
      query allFilms {
      film(id: "ZmlsbXM6MQ==") {

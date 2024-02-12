@@ -5,23 +5,30 @@ public protocol SubscriptionRequestSerializable {
 }
 
 public struct SubscriptionRequest<R: Request>: SubscriptionRequestSerializable {
-    let operationName: String
     let request: R
     let subscriptionID: SubscriptionID
     
     public init(request: R) throws {
-        self.operationName = request.operationName
         self.request = request
         self.subscriptionID = try SubscriptionRequest.generateSubscriptionID(request: request,
-                                                                             operationName: operationName)
+                                                                             operationName: UUID().uuidString)
     }
     
     public func serializedSubscriptionPayload() throws -> String {
-        let query = try self.request.queryDocument.graphQLString()
+        let subscription = try self.request.queryDocument.graphQLString()
+      let query = "{\"query\":\"\(subscription)\",\"variables\":{}}"
+      var authorization: [String : Any] = [
+        "Authorization": request.authorization,
+        "host": request.host
+      ]
+      
+      var extensions: [String : Any] = [
+        "authorization": authorization,
+      ]
         
         var body: [String : Any] = [
-            "operationName": self.operationName,
-            "query": query
+            "extensions": extensions,
+            "data": query
         ]
         
         if let variables = try self.request.variables?.graphQLVariablesDictionary() {

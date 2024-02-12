@@ -91,7 +91,11 @@ class DispatcherTests: XCTestCase {
         XCTAssertTrue(self.mockRequestSender.expectation)
     }
     
-    class BadRequest: AutoGraphQL.Request {
+  class BadRequest: AutoGraphQL.Request {
+    var authorization: String = ""
+    
+    var host: String = ""
+    
         struct BadQuery: GraphQLDocument {
             func graphQLString() throws -> String {
                 throw NSError(domain: "error", code: -1, userInfo: nil)

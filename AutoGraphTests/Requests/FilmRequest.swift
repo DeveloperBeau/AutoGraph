@@ -3,6 +3,10 @@ import Foundation
 import JSONValueRX
 
 class FilmRequest: Request {
+  var authorization: String = ""
+  
+  var host: String = ""
+  
     /*
      query film {
         film(id: "ZmlsbXM6MQ==") {
