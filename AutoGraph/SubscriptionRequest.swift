@@ -32,12 +32,8 @@ public struct SubscriptionRequest<R: Request>: SubscriptionRequestSerializable {
       let value = try JSONSerialization.data(withJSONObject: query, options: .fragmentsAllowed)
         var body: [String : Any] = [
             "extensions": extensions,
-            "data": value
+            "data": String(data: value, encoding: .utf8)!
         ]
-        
-        if let variables = try self.request.variables?.graphQLVariablesDictionary() {
-            body["variables"] = variables
-        }
         
         let payload: [String : Any] = [
             "payload": body,
