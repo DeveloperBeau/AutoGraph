@@ -234,7 +234,7 @@ public struct SelectionSet: ExpressibleByArrayLiteral, SelectionSetSerializable,
     }
     
     public func serializedSelections() throws -> [String] {
-        return try self.selections.map { try $0.graphQLString() }
+        return try self.selections.compactMap { try $0.graphQLString() }
     }
     
     public func graphQLString() throws -> String {
