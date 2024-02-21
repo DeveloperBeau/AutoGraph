@@ -178,7 +178,7 @@ public protocol AcceptsSelectionSet: SelectionSetSerializable {
 
 public extension AcceptsSelectionSet {
     func serializedSelections() throws -> [String] {
-        return try self.selectionSet.selections.map { try $0.graphQLString() }
+        return try self.selectionSet.selections.compactMap { try $0.graphQLString() }
     }
 }
 
