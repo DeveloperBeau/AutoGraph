@@ -73,7 +73,8 @@ open class Dispatcher {
         
         do {
             try sendable.willSend?()
-            let query = try sendable.queryDocument.graphQLString()
+            var query = try sendable.queryDocument.graphQLString()
+          query = query.replacingOccurrences(of: "platform: \"APNS\"", with: "platform: APNS")
             var parameters: [String : Any] = ["query" : query]
             if let variables = try sendable.variables?.graphQLVariablesDictionary() {
                 parameters["variables"] = variables
