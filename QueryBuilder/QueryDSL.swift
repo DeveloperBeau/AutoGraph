@@ -164,7 +164,7 @@ public extension SelectionSetSerializable {
         }.joined(separator: "\n")
         
         guard selectionSetString.count > 0 else {
-            throw QueryBuilderError.missingFields(selectionSetName: self.selectionSetDebugName)
+            return ""
         }
         
         return " {\n\(selectionSetString)\n}"
