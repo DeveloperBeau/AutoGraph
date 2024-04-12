@@ -289,12 +289,13 @@ extension WebSocketClient {
 // MARK: - WebSocketDelegate
 
 extension WebSocketClient: WebSocketDelegate {
+  
     // This is called on the Starscream callback queue, which defaults to Main.
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: WebSocketEvent, client: any Starscream.WebSocketClient) {
         self.delegate?.didReceive(event: event)
         do {
             switch event {
-            case .disconnected:
+            case .disconnected, .peerClosed:
                 self.state = .disconnected
                 if !self.fullDisconnect {
                     _ = self.reconnect()
